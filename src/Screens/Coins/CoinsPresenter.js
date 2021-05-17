@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Loader from '../../Components/Loader';
 import Message from '../../Components/Message';
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
     display: grid;
@@ -29,9 +30,11 @@ const CoinsPresenter = ({coins, error, loading}) => (
                 {coins && coins.length > 0 && ( 
                     <Container>
                         {coins.map(coin => (
-                            <Item key={coin.id}>
-                                #{coin.rank} {coin.name}/{coin.symbol}
-                            </Item>
+                            <Link to={`/coins/${coin.id}`} key={coin.id}>
+                                <Item>
+                                    #{coin.rank} {coin.name}/{coin.symbol}
+                                </Item>
+                            </Link>
                         ))}
                     </Container>
                 )}
