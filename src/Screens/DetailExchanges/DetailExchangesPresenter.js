@@ -55,6 +55,22 @@ const DetailExchangesPresenter = ({result, error, loading}) => (
     </> 
 );
 
+DetailExchangesPresenter.propTypes = {
+    result: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
+            fiats: PropTypes.arrayOf(
+                PropTypes.shape({
+                    id: PropTypes.string.isRequired,
+                    name: PropTypes.string.isRequired
+                })
+            )
+        })
+    ),
+    error: PropTypes.string,
+    loading: PropTypes.bool.isRequired
+}
 
 export default DetailExchangesPresenter;
 

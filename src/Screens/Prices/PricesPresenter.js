@@ -5,8 +5,9 @@ import Loader from '../../Components/Loader';
 import Message from '../../Components/Message';
 
 const Container = styled.div`
+    padding: 20px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     grid-auto-rows: column;
     grid-auto-rows: 50px;
 `;
@@ -44,7 +45,14 @@ const PricesPresenter = ({tickers, error, loading}) => (
 )
 
 PricesPresenter.propTypes = {
-    tickers: PropTypes.array,
+    tickers: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
+            symbol: PropTypes.string.isRequired,
+            quotes: PropTypes.object
+        })
+    ),
     error: PropTypes.string,
     loading: PropTypes.bool.isRequired
 }

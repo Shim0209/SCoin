@@ -6,6 +6,7 @@ import Message from '../../Components/Message';
 import { Link } from "react-router-dom";
 
 const Container = styled.div`
+    padding: 20px;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-auto-rows: column;
@@ -46,7 +47,14 @@ const CoinsPresenter = ({coins, error, loading}) => (
 );
 
 CoinsPresenter.propTypes = {
-    coins: PropTypes.array,
+    coins: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string.isRequired,
+            rank: PropTypes.number,
+            name: PropTypes.string.isRequired,
+            symbol: PropTypes.string.isRequired
+        })
+    ),
     error: PropTypes.string,
     loading: PropTypes.bool.isRequired
 }

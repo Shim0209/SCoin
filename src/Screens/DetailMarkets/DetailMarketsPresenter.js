@@ -14,9 +14,6 @@ const Container = styled.div`
 
 const ItemObj = styled.a`
     margin-bottom: 20px;
-    &:hover {
-
-    }
 `;
 const Title = styled.div`
     font-size: 20px;
@@ -51,6 +48,19 @@ const DetailMarketsPresenter = ({result, error, loading}) => (
         
     </>
 );
+
+DetailMarketsPresenter.propTypes = {
+    result: PropTypes.arrayOf(
+        PropTypes.shape({
+            market_url: PropTypes.string,
+            exchange_name: PropTypes.string,
+            pair: PropTypes.string,
+            quotes: PropTypes.object
+        })
+    ),
+    error: PropTypes.string,
+    loading: PropTypes.bool.isRequired
+}
 
 export default DetailMarketsPresenter;
 

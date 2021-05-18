@@ -5,6 +5,7 @@ import Loader from '../../Components/Loader';
 import Message from '../../Components/Message';
 
 const Container = styled.div`
+    padding: 20px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-auto-rows: column;
@@ -52,7 +53,14 @@ const ExchangesPresenter = ({exchanges, error, loading}) => (
 )
 
 ExchangesPresenter.propTypes = {
-    exchanges: PropTypes.array,
+    exchanges: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
+            description: PropTypes.string,
+            link: PropTypes.string
+        })
+    ),
     error: PropTypes.string,
     loading: PropTypes.bool.isRequired
 }
