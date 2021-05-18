@@ -53,16 +53,18 @@ const ExchangesPresenter = ({exchanges, error, loading}) => (
 )
 
 ExchangesPresenter.propTypes = {
+    error: PropTypes.string,
+    loading: PropTypes.bool.isRequired,
     exchanges: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
             description: PropTypes.string,
-            link: PropTypes.string
-        })
-    ),
-    error: PropTypes.string,
-    loading: PropTypes.bool.isRequired
+            link: PropTypes.shape({
+                website: PropTypes.arrayOf(PropTypes.string.isRequired)
+            }).isRequired
+        }).isRequired
+    ).isRequired
 }
 
 export default ExchangesPresenter;

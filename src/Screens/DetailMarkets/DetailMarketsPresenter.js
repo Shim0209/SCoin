@@ -50,16 +50,20 @@ const DetailMarketsPresenter = ({result, error, loading}) => (
 );
 
 DetailMarketsPresenter.propTypes = {
+    error: PropTypes.string,
+    loading: PropTypes.bool.isRequired,
     result: PropTypes.arrayOf(
         PropTypes.shape({
             market_url: PropTypes.string,
             exchange_name: PropTypes.string,
             pair: PropTypes.string,
-            quotes: PropTypes.object
-        })
-    ),
-    error: PropTypes.string,
-    loading: PropTypes.bool.isRequired
+            quotes: PropTypes.shape({
+                USD: PropTypes.shape({
+                    price: PropTypes.number.isRequired
+                }).isRequired
+            }).isRequired
+        }).isRequired
+    ).isRequired
 }
 
 export default DetailMarketsPresenter;

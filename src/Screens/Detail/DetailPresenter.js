@@ -102,9 +102,23 @@ const DetailPresenter = ({result, error, loading}) => (
 );
 
 DetailPresenter.propTypes = {
-    result: PropTypes.object,
     error: PropTypes.string,
-    loading: PropTypes.bool.isRequired
+    loading: PropTypes.bool.isRequired,
+    result: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        symbol: PropTypes.string.isRequired,
+        type: PropTypes.string,
+        description: PropTypes.string.isRequired,
+        rank: PropTypes.number,
+        started_at: PropTypes.string,
+        open_source: PropTypes.bool,
+        proof_type: PropTypes.string,
+        org_structure: PropTypes.string,
+        links:PropTypes.shape({
+            website:PropTypes.arrayOf(PropTypes.string.isRequired)
+        }).isRequired
+    }).isRequired
+    
 }
 
 export default DetailPresenter;

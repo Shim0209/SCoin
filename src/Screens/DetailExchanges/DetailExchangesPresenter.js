@@ -35,13 +35,16 @@ const DetailExchangesPresenter = ({result, error, loading}) => (
             <>
                 {result && result.length > 0 && (
                     <Container>
-                        {result.map(exchange => (
+                        {result
+                            .filter(exchange => exchange.fiats.length !== 0)
+                            .sort((first, second) => second.fiats.length - first.fiats.length)
+                            .map(exchange => (
                             <PayItem key={exchange.id}>
                                 <Title>{exchange.name}</Title>
                                 <ExchangeList>
-                                    {exchange.fiats.length > 0 ? exchange.fiats.map(pay => (                                       
-                                            <ExchangObj key={pay.id}>{pay.name}</ExchangObj>                 
-                                    )) : <ExchangObj>none</ExchangObj>}
+                                    {exchange.fiats.map(pay => (                                       
+                                        <ExchangObj key={pay.id}>{pay.name}</ExchangObj>                 
+                                    ))}
                                 </ExchangeList>
 
                             </PayItem>
@@ -56,6 +59,8 @@ const DetailExchangesPresenter = ({result, error, loading}) => (
 );
 
 DetailExchangesPresenter.propTypes = {
+    error: PropTypes.string,
+    loading: PropTypes.bool.isRequired,
     result: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.string.isRequired,
@@ -67,9 +72,7 @@ DetailExchangesPresenter.propTypes = {
                 })
             )
         })
-    ),
-    error: PropTypes.string,
-    loading: PropTypes.bool.isRequired
+    )
 }
 
 export default DetailExchangesPresenter;

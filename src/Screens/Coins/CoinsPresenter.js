@@ -30,7 +30,10 @@ const CoinsPresenter = ({coins, error, loading}) => (
             <>
                 {coins && coins.length > 0 && ( 
                     <Container>
-                        {coins.map(coin => (
+                        {coins
+                            .filter(coin => coin.rank !==0)
+                            .sort((first, second) => first.rank - second.rank)
+                            .map(coin => (
                             <Link to={`/coins/${coin.id}`} key={coin.id}>
                                 <Item>
                                     #{coin.rank} {coin.name}/{coin.symbol}
@@ -47,16 +50,16 @@ const CoinsPresenter = ({coins, error, loading}) => (
 );
 
 CoinsPresenter.propTypes = {
+    error: PropTypes.string,
+    loading: PropTypes.bool.isRequired,
     coins: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.string.isRequired,
-            rank: PropTypes.number,
+            rank: PropTypes.number.isRequired,
             name: PropTypes.string.isRequired,
             symbol: PropTypes.string.isRequired
-        })
-    ),
-    error: PropTypes.string,
-    loading: PropTypes.bool.isRequired
+        }).isRequired
+    ).isRequired
 }
 
 export default CoinsPresenter;

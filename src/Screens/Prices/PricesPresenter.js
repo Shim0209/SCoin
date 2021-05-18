@@ -45,16 +45,20 @@ const PricesPresenter = ({tickers, error, loading}) => (
 )
 
 PricesPresenter.propTypes = {
+    error: PropTypes.string,
+    loading: PropTypes.bool.isRequired,
     tickers: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
             symbol: PropTypes.string.isRequired,
-            quotes: PropTypes.object
-        })
-    ),
-    error: PropTypes.string,
-    loading: PropTypes.bool.isRequired
+            quotes: PropTypes.shape({
+                USD: PropTypes.shape({
+                    price: PropTypes.number.isRequired
+                }).isRequired
+            }).isRequired
+        }).isRequired
+    ).isRequired
 }
 
 export default PricesPresenter;
