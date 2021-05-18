@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
+import {BrowserRouter as Router, Redirect, Route} from "react-router-dom";
 import Header from './Header';
 import Coins from '../Screens/Coins';
 import Exchanges from '../Screens/Exchanges';
